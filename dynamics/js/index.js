@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 
 //CLASE OBEJTO para los sprites
 class Objetito{
-    constructor(x, y, dx, dy, ruta, tamX, tamY){
+    constructor(x, y, dx, dy, ruta, tamX, tamY, ){
         this.x = x; //posicion x del amongus
         this.y = y; //posicion y del amongus
         this.tamX = tamX; //tamaño constante x de nuestro sprite en la plantilla de los sprites
@@ -18,54 +18,56 @@ class Objetito{
         this.img = imagen; //nombre de la imagen (ver línea 50)
     }
 
-    //PARA QUE EL AMNGUS SE PUEDA MOVER A LA DERECHA, IZQUIERDA ARRIBA Y ABAJO
+    //PARA QUE EL AMONGUS SE PUEDA MOVER A LA DERECHA, IZQUIERDA ARRIBA Y ABAJO
     caminarDerecha(){
-        if ( x > 120 && x < 1180){
+        if ( this.x > 120 && this.x < 1180){
             this.x += this.dx;
         }
     }
     caminarIzquierda(){
-        if ( x > 120 && x < 1180){
+        if ( this.x > 120 && this.x < 1180){
             this.x -= this.dx;
         }
     }
     caminarArriba(){
-        if ( y > 0 && x < 700){
+        if ( this.y > 0 && this.x < 700){
             this.y -= this.dy;
         }
     }
     caminarAbajo(){
-        if ( y > 0 && x < 700){
+        if ( this.y > 0 && this.x < 700){
             this.y += this.dy;
         }
     }
 
     //FUNCIONES PARA EL BOT
-    moverIzquierda(){
-         
+    moverArriba_abajo(){
+        if(this.y > 700){
+            this.y = -120;
+        }
     }
-    moverDerecha(){
-        
-    }
-    moverDerecha(){
-
-    }
-    moverIzquierda(){
-
+    moverAbajo_arriba(){
+        if(this.y < -120){
+            this.y = 700;
+        }
     }
     
-    salvao(){
+    //salvao(){
 
-    }
-
+    //}
 
     dibujar(){
         ctx.drawImage(this.img, this.spriteX, this.spriteY, this.tamX, this.tamY, this.x, this.y, this.tamX, this.tamY);
     }
 }
 
-const amongus = new Objetito(0, 0, 3, 2, "statics/media/images/amongus_sprites.png", 60, 60);
-const coches = new Objetito(0, 0, 3, 2, "statics/media/images/mata_amongus.png", );
+
+//constructor(x, y, dx, dy, ruta, tamX, tamY) X y Y para el canvas, DX y DY para el cmabio de posición, 
+//ctx.drawImage(this.img, this.spriteX, this.spriteY, this.tamX, this.tamY, this.x, this.y, this.tamX, this.tamY);
+
+const amongus = new Objetito(100, 300, 2, 2, "statics/media/images/amongus_sprites.png", 60, 60);
+const cocheArriba = new Objetito(230, -50, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120);
+const cocheAbajo = new Objetito(230, 500, 3, 2, "statics/media/images/mata_amongus2.png", 120, 120);
 const fondo = new Image();
 const arbusto = new Image();
 fondo.src = "statics/media/images/carretera_fondo2.png";
@@ -79,8 +81,9 @@ arbusto.src = "statics/media/images/arbustito2.png";
         ctx.drawImage(arbusto, 1100, 200, 80, 80);
         ctx.drawImage(arbusto, 1100, 400, 80, 80);
         ctx.drawImage(arbusto, 1100, 600, 80, 80);
-        ctx.drawImage(amongus, 0, 0, 50, 60, 0, 0, 65, 65);  
-
+        amongus.dibujar();
+        cocheArriba.dibujar();
+        cocheAbajo.dibujar();
 
         // dvd.dibujar();
         // dvd2.dibujar();
