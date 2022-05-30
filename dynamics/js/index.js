@@ -1,3 +1,20 @@
+function detectarColisiones(amongus, coche){
+    if (amongus.x > coche.x+coche.tamX){
+        console.log("NO HUBO COLISION condicion1");
+    } else if (amongus.x+amongus.tamX < coche.x){
+        console.log("NO HUBO COLISION condicion2");
+    } else if (amongus.y > coche.y+coche.tamY){
+        console.log("NO HUBO COLISION condicion3");
+    } else if (amongus.y+amongus.tamY < coche.y){
+        console.log("NO HUBO COLISION condicion4");
+    } else{
+        console.log("Si HUBO COLISION");
+        audioMori.volume = 0.5;
+        audioMori.play();
+        dibujar()
+    }
+}
+
 //identificación de canvas
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -21,24 +38,16 @@ class Objetito{
 
     //PARA QUE EL AMONGUS SE PUEDA MOVER A LA DERECHA, IZQUIERDA ARRIBA Y ABAJO
     caminarDerecha(){
-        //if ( this.x < 80 && this.x < 1180){
-            this.x += this.dx;
-        //}
+        this.x += this.dx;
     }
     caminarIzquierda(){
-        //if ( this.x > 120 && this.x < 1180){
-            this.x -= this.dx;
-        //}
+        this.x -= this.dx;
     }
     caminarArriba(){
-        //if ( this.y > 0 && this.x < 700){
-            this.y -= this.dy;
-        //}
+        this.y -= this.dy;
     }
     caminarAbajo(){
-        //if ( this.y > 0 && this.x < 700){
-            this.y += this.dy;
-        //}
+        this.y += this.dy;
     }
 
     //FUNCIONES PARA EL BOT
@@ -58,11 +67,8 @@ class Objetito{
     //salvao(){
     //}
 
-    dibujar(){
-        ctx.drawImage(this.img, this.spriteX, this.spriteY, this.tamX, this.tamY, this.x, this.y, this.tamX, this.tamY);
-    }
+    
 }
-
 
 //constructor(x, y, dx, dy, ruta, tamX, tamY) X y Y para el canvas, DX y DY para el cmabio de posición, 
 //ctx.drawImage(this.img, this.spriteX, this.spriteY, this.tamX, this.tamY, this.x, this.y, this.tamX, this.tamY);
@@ -97,6 +103,11 @@ arbusto.src = "statics/media/images/arbustito2.png";
         //BOTS UWU
         coche1.dibujar();
         coche1.moverArriba_abajo();
+        detectarColisiones(amongus, coche1);
+        detectarColisiones(amongus, coche2);
+        detectarColisiones(amongus, coche3);
+        detectarColisiones(amongus, coche4);
+        detectarColisiones(amongus, cocheloco);
         
         coche2.dibujar();
         coche2.moverAbajo_arriba();
@@ -129,23 +140,10 @@ window.addEventListener("keydown", (evento) =>{
         if (amongus.y > 0){
             amongus.caminarArriba();
         }
-        if (amongus.x > coche1.x+coche1.tamX){
-            console.log("NO HUBO COLISION condicion1");
-        } else if (amongus.x+amongus.tamX < coche1.x){
-            console.log("NO HUBO COLISION condicion2");
-        } else if (amongus.y > coche1.y+coche1.tamY){
-            console.log("NO HUBO COLISION condicion3");
-        } else if (amongus.y+amongus.tamY < coche1.y){
-            console.log("NO HUBO COLISION condicion4");
-        } else{
-            console.log("Si HUBO COLISION");
-            audioMori.volume = 0.1;
-            audioMori.play();
-        }
     } else if (tecla == "ArrowDown"){
         if ( amongus.y < 640){
             amongus.caminarAbajo();
-        }
+        }        
     } else if (tecla == "ArrowLeft"){
         if ( amongus.x > 0){
             amongus.caminarIzquierda();
