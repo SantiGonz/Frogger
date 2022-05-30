@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 
 //CLASE OBEJTO para los sprites
 class Objetito{
-    constructor(x, y, dx, dy, ruta, tamX, tamY, ){
+    constructor(x, y, dx, dy, ruta, tamX, tamY, tipo){
         this.x = x; //posicion x del amongus
         this.y = y; //posicion y del amongus
         this.tamX = tamX; //tamaño constante x de nuestro sprite en la plantilla de los sprites
@@ -16,28 +16,29 @@ class Objetito{
         const imagen = new Image(); //tratamos a las imagenes como objeto porque ocupamos varias imagenes (ver línea 54)
         imagen.src = ruta; // ruta de la imagen
         this.img = imagen; //nombre de la imagen (ver línea 50)
+        this.tipo = tipo;
     }
 
     //PARA QUE EL AMONGUS SE PUEDA MOVER A LA DERECHA, IZQUIERDA ARRIBA Y ABAJO
     caminarDerecha(){
-        if ( this.x > 120 && this.x < 1180){
+        //if ( this.x < 80 && this.x < 1180){
             this.x += this.dx;
-        }
+        //}
     }
     caminarIzquierda(){
-        if ( this.x > 120 && this.x < 1180){
+        //if ( this.x > 120 && this.x < 1180){
             this.x -= this.dx;
-        }
+        //}
     }
     caminarArriba(){
-        if ( this.y > 0 && this.x < 700){
+        //if ( this.y > 0 && this.x < 700){
             this.y -= this.dy;
-        }
+        //}
     }
     caminarAbajo(){
-        if ( this.y > 0 && this.x < 700){
+        //if ( this.y > 0 && this.x < 700){
             this.y += this.dy;
-        }
+        //}
     }
 
     //FUNCIONES PARA EL BOT
@@ -66,12 +67,19 @@ class Objetito{
 //constructor(x, y, dx, dy, ruta, tamX, tamY) X y Y para el canvas, DX y DY para el cmabio de posición, 
 //ctx.drawImage(this.img, this.spriteX, this.spriteY, this.tamX, this.tamY, this.x, this.y, this.tamX, this.tamY);
 
-const amongus = new Objetito(100, 300, 2, 2, "statics/media/images/amongus_sprites.png", 60, 60);
-const coche1 = new Objetito(230, -50, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120);
-const coche2 = new Objetito(430, 500, 2, 2, "statics/media/images/mata_amongus6.png", 120, 120);
-const coche3 = new Objetito(660, -100, 2, 2, "statics/media/images/mata_amongus6.png", 120, 120);
-const coche4 = new Objetito(830, 800, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120);
-const cocheloco = new Objetito(510, 800, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120);
+const audioMori = new Audio("./statics/media/audio/atropellao.mp3");
+
+const amongus = new Objetito(100, 300, 15, 15, "statics/media/images/amongus_sprites.png", 60, 60, "peaton");
+const amongus2 = new Objetito(100, 300, 15, 15, "statics/media/images/amongus_sprites.png", 60, 60, "peaton");
+const amongus3 = new Objetito(100, 300, 15, 15, "statics/media/images/amongus_sprites.png", 60, 60, "peaton");
+const amongus4 = new Objetito(100, 300, 15, 15, "statics/media/images/amongus_sprites.png", 60, 60, "peaton");
+
+const coche1 = new Objetito(230, -50, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120, "auto");
+const coche2 = new Objetito(430, 500, 2, 2, "statics/media/images/mata_amongus6.png", 120, 120, "auto");
+const coche3 = new Objetito(660, -100, 2, 2, "statics/media/images/mata_amongus6.png", 120, 120, "auto");
+const coche4 = new Objetito(830, 800, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120, "auto");
+const cocheloco = new Objetito(510, 800, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120, "auto");
+
 const fondo = new Image();
 const arbusto = new Image();
 fondo.src = "statics/media/images/carretera_fondo2.png";
@@ -85,8 +93,8 @@ arbusto.src = "statics/media/images/arbustito2.png";
         ctx.drawImage(arbusto, 1100, 200, 80, 80);
         ctx.drawImage(arbusto, 1100, 400, 80, 80);
         ctx.drawImage(arbusto, 1100, 600, 80, 80);
-        amongus.dibujar();
         
+        //BOTS UWU
         coche1.dibujar();
         coche1.moverArriba_abajo();
         
@@ -102,55 +110,53 @@ arbusto.src = "statics/media/images/arbustito2.png";
         coche4.dibujar();
         coche4.moverArriba_abajo();
         
-
-        // coche3.dibujar();
-        // coche3.dibujar();
-
-        // coche4.dibujar();
-
-        // cocheloco.dibujar();
-        
-
-        // dvd.dibujar();
-        // dvd2.dibujar();
-
-        // ctx.drawImage(dvd.img, dvd.spriteX, dvd.spriteY, 32, 16, dvd.x, dvd.y, 32, 16);
-        // ctx.drawImage(dvd.img, dvd.spriteX, dvd.spriteY, 32, 16, dvd.x, dvd.y, 32, 16);
-
-        // x += dx;
-        // y += dy;
-
-        // if(dvd.x <= 0 || dvd.x >=canvas.width -32){
-        //     dvd.dx = -dvd.dx;
-        //     dvd.spriteX += 32;
-        // } else if(dvd.y <= 0 || dvd.y >= canvas.height - 16){
-        //     dvd.dy = -dvd.dy;
-        //     dvd.spriteX += 32;
-        // }
-
+        amongus.dibujar();
         window.requestAnimationFrame(dibujar);
     }
 
 window.requestAnimationFrame(dibujar);
 
+// Si ( x1 > x2+w2 ) ==> No hay colisión
+// Si ( x1+w1 < x2 ) ==> No hay colisión
+// Si ( y1 > y2+h2 ) ==> No hay colisión
+// Si ( y1+h1 < y2 ) ==> No hay colisión
+// En otro caso ==> Hay colisión
 
+window.addEventListener("keydown", (evento) =>{
+    let tecla = evento.key;
+    console.log(tecla);
+    if (tecla == "ArrowUp"){
+        if (amongus.y > 0){
+            amongus.caminarArriba();
+        }
+        if (amongus.x > coche1.x+coche1.tamX){
+            console.log("NO HUBO COLISION condicion1");
+        } else if (amongus.x+amongus.tamX < coche1.x){
+            console.log("NO HUBO COLISION condicion2");
+        } else if (amongus.y > coche1.y+coche1.tamY){
+            console.log("NO HUBO COLISION condicion3");
+        } else if (amongus.y+amongus.tamY < coche1.y){
+            console.log("NO HUBO COLISION condicion4");
+        } else{
+            console.log("Si HUBO COLISION");
+            audioMori.volume = 0.1;
+            audioMori.play();
+        }
+    } else if (tecla == "ArrowDown"){
+        if ( amongus.y < 640){
+            amongus.caminarAbajo();
+        }
+    } else if (tecla == "ArrowLeft"){
+        if ( amongus.x > 0){
+            amongus.caminarIzquierda();
+        }
+    } else if (tecla == "ArrowRight"){
+        if ( amongus.x < 1120){
+            amongus.caminarDerecha();
+        }
+    }
+});
 
-//identificación de imagenes
-// const fondo = new Image();
-// fondo.src = "statics/media/images/carretera_fondo2.png";
-
-// const amongus = new Image();
-// amongus.src = "statics/media/images/amongus_sprites.png";
-
-//se muestran las imagenes
-fondo.addEventListener('load', ()=>{
-    ctx.drawImage(fondo, 380, 320);    
-})
-
-// amongus.addEventListener('load', () => {
-//     ctx.drawImage(amongus, 5, 5, 52, 55, 340, 320, 52, 50);
-//     ctx.drawImage(amongus, 62, 70, 52, 55, 340, 390, 52, 50);
-// });
 
 
 
