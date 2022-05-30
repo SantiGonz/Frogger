@@ -64,6 +64,9 @@ class Objetito{
         }
     }
     
+    dibujar(){
+        ctx.drawImage(this.img, this.spriteX, this.spriteY, this.tamX, this.tamY, this.x, this.y, this.tamX, this.tamY);
+    }
     //salvao(){
     //}
 
@@ -123,6 +126,8 @@ arbusto.src = "statics/media/images/arbustito2.png";
         
         amongus.dibujar();
         window.requestAnimationFrame(dibujar);
+
+        
     }
 
 window.requestAnimationFrame(dibujar);
