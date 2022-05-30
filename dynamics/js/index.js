@@ -18,69 +18,71 @@ class Objetito{
         this.img = imagen; //nombre de la imagen (ver línea 50)
     }
 
-    mover(){
+    moverDerecha(){
         this.x += this.dx;
+    }
+    moverIzquierda(){
+        this.x -= this.dx;
+    }
+    moverArriba(){
+        this.y -= this.dy;
+    }
+    moverAbajo(){
         this.y += this.dy;
-
-        if(this.x <= 0 || this.x >=canvas.width - this.tamX){
-            this.dx = -this.dx;
-            this.spriteX += this.tamX;
-        } else if(this.y <= 0 || this.y >= canvas.height - this.tamY){
-            this.dy = -this.dy;
-            this.spriteX += this.tamX;
-        }
-
-        if (this.spriteX > 192) {
-            this.spriteX = 0;
-        }
     }
 
-    caminarArriba(){
-        this.spriteY = 1 * this.tamY;
+    // caminarIzquierda(){
+        
+    // }
+    // caminarDerecha(){
+        
+    // }
+    // correrDerecha(){
+
+    // }
+    // correrIzquierda(){
+
+    // }
+    salvao(){
+
     }
-    caminarAbajo(){
-        this.spriteY = 0 * this.tamY;
-    }
-    caminarIzquierda(){
-        this.spriteY = 2 * this.tamY;
-    }
-    caminarDerecha(){
-        this.spriteY = 3 * this.tamY;
-    }
+
 
     dibujar(){
         ctx.drawImage(this.img, this.spriteX, this.spriteY, this.tamX, this.tamY, this.x, this.y, this.tamX, this.tamY);
     }
 }
 
-const amongus = new Objetito(0, 0, 3, 2, "statics/media/images/amongus_sprites.png");
-const coches = new Objetito(200, 100, 3, 2, "statics/media/images/mata_amongus.png");
+const amongus = new Objetito(0, 0, 3, 2, "statics/media/images/amongus_sprites.png", 60, 60);
+const coches = new Objetito(200, 100, 3, 2, "statics/media/images/mata_amongus.png", );
 const fondo = new Image();
 fondo.src = "statics/media/images/carretera_fondo2.png";
 
-function dibujar(){
-    ctx.drawImage(fondo, 70, 0, 930, 700,);
-    
 
-    // dvd.dibujar();
-    // dvd2.dibujar();
+    function dibujar(){
+        ctx.drawImage(fondo, 70, 0, 930, 700,);
+        ctx.fillStyle = "#00aafa";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // ctx.drawImage(dvd.img, dvd.spriteX, dvd.spriteY, 32, 16, dvd.x, dvd.y, 32, 16);
-    // ctx.drawImage(dvd.img, dvd.spriteX, dvd.spriteY, 32, 16, dvd.x, dvd.y, 32, 16);
+        // dvd.dibujar();
+        // dvd2.dibujar();
 
-    // x += dx;
-    // y += dy;
+        // ctx.drawImage(dvd.img, dvd.spriteX, dvd.spriteY, 32, 16, dvd.x, dvd.y, 32, 16);
+        // ctx.drawImage(dvd.img, dvd.spriteX, dvd.spriteY, 32, 16, dvd.x, dvd.y, 32, 16);
 
-    // if(dvd.x <= 0 || dvd.x >=canvas.width -32){
-    //     dvd.dx = -dvd.dx;
-    //     dvd.spriteX += 32;
-    // } else if(dvd.y <= 0 || dvd.y >= canvas.height - 16){
-    //     dvd.dy = -dvd.dy;
-    //     dvd.spriteX += 32;
-    // }
+        // x += dx;
+        // y += dy;
 
-    window.requestAnimationFrame(dibujar);
-}
+        // if(dvd.x <= 0 || dvd.x >=canvas.width -32){
+        //     dvd.dx = -dvd.dx;
+        //     dvd.spriteX += 32;
+        // } else if(dvd.y <= 0 || dvd.y >= canvas.height - 16){
+        //     dvd.dy = -dvd.dy;
+        //     dvd.spriteX += 32;
+        // }
+
+        window.requestAnimationFrame(dibujar);
+    }
 
 window.requestAnimationFrame(dibujar);
 
