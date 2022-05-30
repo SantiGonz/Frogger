@@ -42,18 +42,19 @@ class Objetito{
 
     //FUNCIONES PARA EL BOT
     moverArriba_abajo(){
+        this.y += 20;
         if(this.y > 700){
             this.y = -120;
         }
     }
     moverAbajo_arriba(){
+        this.y -= 35;
         if(this.y < -120){
             this.y = 700;
         }
     }
     
     //salvao(){
-
     //}
 
     dibujar(){
@@ -66,8 +67,11 @@ class Objetito{
 //ctx.drawImage(this.img, this.spriteX, this.spriteY, this.tamX, this.tamY, this.x, this.y, this.tamX, this.tamY);
 
 const amongus = new Objetito(100, 300, 2, 2, "statics/media/images/amongus_sprites.png", 60, 60);
-const cocheArriba = new Objetito(230, -50, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120);
-const cocheAbajo = new Objetito(230, 500, 3, 2, "statics/media/images/mata_amongus2.png", 120, 120);
+const coche1 = new Objetito(230, -50, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120);
+const coche2 = new Objetito(430, 500, 2, 2, "statics/media/images/mata_amongus6.png", 120, 120);
+const coche3 = new Objetito(660, -100, 2, 2, "statics/media/images/mata_amongus6.png", 120, 120);
+const coche4 = new Objetito(830, 800, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120);
+const cocheloco = new Objetito(510, 800, 2, 2, "statics/media/images/mata_amongus2.png", 120, 120);
 const fondo = new Image();
 const arbusto = new Image();
 fondo.src = "statics/media/images/carretera_fondo2.png";
@@ -82,8 +86,30 @@ arbusto.src = "statics/media/images/arbustito2.png";
         ctx.drawImage(arbusto, 1100, 400, 80, 80);
         ctx.drawImage(arbusto, 1100, 600, 80, 80);
         amongus.dibujar();
-        cocheArriba.dibujar();
-        cocheAbajo.dibujar();
+        
+        coche1.dibujar();
+        coche1.moverArriba_abajo();
+        
+        coche2.dibujar();
+        coche2.moverAbajo_arriba();
+
+        cocheloco.dibujar();
+        cocheloco.moverArriba_abajo();
+
+        coche3.dibujar();
+        coche3.moverAbajo_arriba();
+
+        coche4.dibujar();
+        coche4.moverArriba_abajo();
+        
+
+        // coche3.dibujar();
+        // coche3.dibujar();
+
+        // coche4.dibujar();
+
+        // cocheloco.dibujar();
+        
 
         // dvd.dibujar();
         // dvd2.dibujar();
